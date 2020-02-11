@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="main.css" />
+
+
+<style>
+
+
+
+</style>
+
+
+</head>
+<body>
+
+
+<div id="PIANO_KEYBOARD_SUPER" class="PIANO_KEYBOARD_SUPER">
+<div class="PIANO_KEYBOARD">
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">C</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">C#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">D</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">D#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">E</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">F</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">F#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">G</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">G#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">A</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">A#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">B</div></button>
+</div>
+
+
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">C</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">C#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">D</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">D#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">E</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">F</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">F#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">G</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">G#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">A</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">A#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">B</div></button>
+</div>
+
+
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">C</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">C#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">D</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">D#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">E</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">F</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">F#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">G</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">G#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">A</div></button>
+  <button class="PIANO_BLACKKEY PIANO_KEY"><div class="PIANO_KEYLABEL">A#</div></button>
+</div>
+<div class="PIANO_KEYBLOCK">
+  <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">B</div></button>
+</div>
+
+
+
+
+</div>
+
+</div>
+
+<div id="TOP_SECTION" class="TOP_SECTION">
+
+<div id="CONTROL_PANEL" class="CONTROL_PANEL">
+
+Instrument:
+
+<select class="INSTRUMENT_SELECT" id="INSTRUMENT_SELECT_ADD">
+  <option value="MANDOLIN">       Mandolin</option>
+  <option value="UKELELE">       Ukelele</option>
+  <option value="GUITAR">       Guitar</option>
+</select>
+
+<button id="ADD_INSTRUMENT_BUTTON">
+  ADD
+</button>
+<br>
+<span>Select scale:</span>
+<select id="SELECT_SCALEKEY" style="display:none">
+  <option value="1">       C</option>
+  <option value="2">       C#/Db</option>
+  <option value="3">       D</option>
+  <option value="4">       D#/Eb</option>
+  <option value="5">       E</option>
+  <option value="6">       F</option>
+  <option value="7">       F#/Gb</option>
+  <option value="8">       G</option>
+  <option value="9">       G#/Ab</option>
+  <option value="10">      A</option>
+  <option value="11">      A#/Bb</option>
+  <option value="12">      B</option>
+</select>
+
+
+<label><input type="checkbox" id="ShowPiano" name="ShowPiano" value="value" checked="true">Show Piano</label>
+<label><input type="checkbox" id="ShowStaff" name="ShowStaff" value="value" checked="true">Show Staff</label>
+
+
+<div id="KEY_SELECT_PANEL">
+
+<div class="KEY_BUTTON_HALFBUFFER"></div>
+<button class="KEY_BUTTON"> Db/C# </button>
+<button class="KEY_BUTTON"> Eb</button>
+<div class="KEY_BUTTON_BUFFER"></div>
+<button class="KEY_BUTTON"> Gb/F# </button>
+<button class="KEY_BUTTON"> Ab </button>
+<button class="KEY_BUTTON"> Bb </button>
+<div class="KEY_BUTTON_HALFBUFFER"></div>
+
+<button class="KEY_BUTTON KEY_BUTTON_SELECTED">C</button>
+<button class="KEY_BUTTON">D</button>
+<button class="KEY_BUTTON">E</button>
+<button class="KEY_BUTTON">F</button>
+<button class="KEY_BUTTON">G</button>
+<button class="KEY_BUTTON">A</button>
+<button class="KEY_BUTTON">B/Cb</button>
+
+<select id="SELECT_SCALEKEYTYPE">
+  <option value="Major">       Major</option>
+  <option value="Minor">       Minor</option>
+</select>
+
+</div>
+
+
+</div>
+
+
+
+
+<div  id="STAFF_HOLDER" class="STAFF_HOLDER">
+
+<div id="STAFF_LINE_M2"   class="STAFF_LINE LOWFLOAT STAFF_LINE_M2 INVIS"></div>
+<div id="STAFF_FLOAT_M2"  class="STAFF_FLOAT LOWFLOAT STAFF_LINE_M2"></div>
+<div id="STAFF_LINE_M1"   class="STAFF_LINE LOWFLOAT STAFF_LINE_M1 INVIS"><div class="STAFF_LABEL">C</div><div class="STAFF_LABEL_MID">D</div></div>
+<div id="STAFF_FLOAT_M1"  class="STAFF_FLOAT LOWFLOAT STAFF_LINE_M1"></div>
+<div id="STAFF_LINE_1" class="STAFF_LINE STAFF_LINE_1"> <img class="CLEF_IMAGE" src="media/trebleclef.png" alt="treble clef">  <div class="STAFF_LABEL">E</div><div class="STAFF_LABEL_MID">F</div> </div>
+<div id="STAFF_LINE_2" class="STAFF_LINE STAFF_LINE_2"><div class="STAFF_LABEL">G</div><div class="STAFF_LABEL_MID">A</div></div>
+<div id="STAFF_LINE_3" class="STAFF_LINE STAFF_LINE_3"><div class="STAFF_LABEL">B</div><div class="STAFF_LABEL_MID">C</div></div>
+<div id="STAFF_LINE_4" class="STAFF_LINE STAFF_LINE_4"><div class="STAFF_LABEL">D</div><div class="STAFF_LABEL_MID">E</div></div>
+<div id="STAFF_LINE_5" class="STAFF_LINE STAFF_LINE_5"><div class="STAFF_LABEL">F</div><div class="STAFF_LABEL_MID">G</div></div>
+<div id="STAFF_FLOAT_P1"  class="STAFF_FLOAT HIGHFLOAT STAFF_LINE_P1"></div>
+<div id="STAFF_LINE_P1"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P1 INVIS"><div class="STAFF_LABEL">A</div><div class="STAFF_LABEL_MID">B</div></div>
+<div id="STAFF_FLOAT_P2"  class="STAFF_FLOAT HIGHFLOAT  STAFF_LINE_P2"></div>
+<div id="STAFF_LINE_P2"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P2 INVIS"><div class="STAFF_LABEL">C</div><div class="STAFF_LABEL_MID">D</div></div>
+<div id="STAFF_FLOAT_P3"  class="STAFF_FLOAT HIGHFLOAT  STAFF_LINE_P3"></div>
+<div id="STAFF_LINE_P3"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P3 INVIS"><div class="STAFF_LABEL">E</div><div class="STAFF_LABEL_MID">F</div></div>
+<div id="STAFF_FLOAT_P4"  class="STAFF_FLOAT HIGHFLOAT  STAFF_LINE_P4"></div>
+<div id="STAFF_LINE_P4"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P4 INVIS"><div class="STAFF_LABEL">G</div></div>
+
+
+</div>
+
+
+
+</div>
+
+<div id="maindiv" class="maindiv">
+<div class="maindivInner"id="maindivInner_CONTROLPANEL">
+
+<br>
+
+<div style="display:none">
+<input type="radio" name="chordSelectMode" value="RootType" style="display:none">
+Select Root:
+<select id="SELECT_ROOT">
+  <option value="1">       C</option>
+  <option value="2">       C#/Db</option>
+  <option value="3">       D</option>
+  <option value="4">       D#/Eb</option>
+  <option value="5">       E</option>
+  <option value="6">       F</option>
+  <option value="7">       F#/Gb</option>
+  <option value="8">       G</option>
+  <option value="9">       G#/Ab</option>
+  <option value="10">      A</option>
+  <option value="11">      A#/Bb</option>
+  <option value="12">      B</option>
+</select>
+ and type
+<select id="SELECT_CHORDTYPE">
+  <option value="M">       Major</option>
+  <option value="m">       Minor</option>
+  <option value="7">       7th</option>
+  <option value="7">       maj7</option>
+  <option value="6">       6th</option>
+  <option value="6">       dim</option>
+</select>
+</div>
+
+<BR>
+
+<input type="radio" name="chordSelectMode" value="ScaleDegree" checked="checked" style="display:none">
+
+
+<span style="display:none">and Degree:</span>
+<select id="SELECT_CHORDDEGREE" style="display:none">
+  <option value="1">       I</option>
+  <option value="2">       ii</option>
+  <option value="3">       iii</option>
+  <option value="4">       IV</option>
+  <option value="5">       V</option>
+  <option value="6">       vi</option>
+  <option value="7">       vii</option>
+</select>
+
+<div id="PIANO_CHORDINFO" class="PIANO_CHORDINFO">Chord info!</div>
+
+<h3>Common Chords:</h3>
+<div class="CHORD_PANELSET" id="CHORD_PANELSET0">
+
+</div>
+
+<br>
+<h3>Related Chords:</h3>
+<div class="RELCHORD_PANEL" id="RELCHORD_PANELSET">
+
+</div>
+
+<br>
+<h3>Full Chord List (w/ in-key root):</h3>
+<div class="CHORD_PANELSET" id="CHORD_PANELSET">
+
+</div>
+
+</div>
+
+<div class="maindivInner"id="maindivInner_CHORDPANEL">
+
+
+</div>
+
+</div>
+</div>
+
+<script type="text/javascript" src="init.p01.js"></script>
+<script type="text/javascript" src="vars.p02.js"></script>
+<script type="text/javascript" src="util.p03.js"></script>
+<script type="text/javascript" src="setup.p04.js"></script>
+
+
+<script type="text/javascript" src="ui.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1148 @@
+
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --LT4: #f0f1f5;
+  --LT3: #e1e4ea;
+  --LT2: #c3c8d5;
+  --LT1: #a5adc0;
+  --MID: #7883a1;
+  --DK1: #5e6a87;	
+  --DK2: #485167;
+  --DK3: #343b4b;
+  --DK4: #1f232d;
+  --baseBG: #c3c8d5;
+  --consoleGreen: #33FF00;
+  --errorRed: #ce0000;
+  --bsodBlue: #0000ce;
+  --bsodText: #ffffff;
+  --consoleBlack: #111111;
+  --greenLT: #a4ba91;
+  --greenMD: #8aa772;
+  --greenDK: #323f27;
+  --botLT: #e7b2b1;
+  --botMD: #c9514f;
+  --botDK: #621f1e;
+  --hawkLT: #b4b7ba;
+  --hawkMD: #95999d;
+  --hawkDK: #494d50;
+  --bioLT: #a4ba91;
+  --bioMD: #8aa772;
+  --bioDK: #323f27;
+  --engLT: #e7b2b1;
+  --engMD: #c9514f;
+  --engDK: #621f1e;
+  --psyLT: #b9b0cf;
+  --psyMD: #8e81b1;
+  --psyDK: #50446f;
+  --subduedWarnRed:    #e23232;
+  --subduedWarnYellow: #e29532;
+  --subduedWarnGreen:  #1bba21;
+  --bioTextDK: #26301d;
+  --engTextDK: #3b1312;
+  --psyTextDK: #221d2f;
+  
+  --LT4WASHOUT: #e4e5e7;
+  --LT3WASHOUT: #c9cbcf;
+  --LT2WASHOUT: #aeb1b7;
+  
+  --costTextLT: #ffffff;
+  --costTextDK: #000000;
+  
+  --textWarnRed: #AE2626;
+  --textWarnGreen: #179A1B;
+  
+  --washoutGray: #999999;
+}
+
+/*
+===================================================================================================================
+===================================================================================================================
+===================================================================================================================
+-----------------------------------   Default formatting
+===================================================================================================================
+===================================================================================================================
+===================================================================================================================
+*/
+
+h2 , h3, h4, h5, h6, p {
+  padding-top: 1px;
+  padding-right: 1px;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  line-height: 1;
+  margin-bottom: 1px;
+  margin-top: 1px;
+
+}
+
+body {
+  overflow: scroll;
+  background-color: var(--LT2);
+}
+
+.FOOTER {
+  height:300px;
+
+}
+
+h1 {
+  padding-top: 1px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0px;
+  line-height: 1;
+}
+h2 {
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0px;
+  line-height: 1;
+}
+h5 {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+/*
+===================================================================================================================
+===================================================================================================================
+===================================================================================================================
+-----------------------------------   Default formatting
+===================================================================================================================
+===================================================================================================================
+===================================================================================================================
+*/
+
+
+
+.maindiv {
+  display: flex;
+  width: 100%;
+  max-width: 100vw;
+  /*grid-template-columns: 50% 50%;
+  grid-template-rows: 250px auto;
+  grid-column-gap: 5px;*/
+  padding: 8px 4px 8px 4px;
+  background-color: transparent;
+}
+
+.instrumentPanel{
+	position: relative;
+	--stringWidth: 50px;
+	--numStrings: 4;
+	width: calc( var(--stringWidth) * ( var(--numStrings) + 0.5 ) )
+}
+
+.fretBoard {
+  display: grid;
+  height: 1000px;
+  grid-template-columns: 25px repeat(6,50px);
+  grid-column-gap: 0px;
+  margin: 0px;
+  padding: 0px;
+  background-color: var(--LT2);
+  grid-area: span 1 / span 1;
+}
+
+.SELECT_NOTE{
+	width: 35px;
+	height: 25px;
+}
+.SELECT_NOTE_SPACER{
+	width: 30px;
+	height: 25px;
+}
+.stringBoardHolder {
+  width: var(--stringWidth);
+  height: 800px;
+  margin: 0px;
+  padding: 0px;
+  display: grid;
+  grid-template-columns: 50px;
+  grid-template-rows: 25px auto;
+  grid-auto-flow: row;
+  grid-column-gap: 0px;
+  grid-area: span 1 / span 1;
+}
+.stringBoard {
+  display: grid;
+  width: var(--stringWidth);
+  height: 800px;
+  background-color: var(--LT3);
+  margin: 0px;
+  padding: 0px;
+  grid-template-columns: 100%;
+  grid-auto-flow: row;
+  grid-area: span 1 / span 1;
+  position: relative;
+}
+.fret {
+  width: var(--stringWidth);
+  height: 50px;
+  background-color: var(--LT4);
+  margin: 0px;
+  padding: 0px;
+  grid-area: span 1 / span 1;
+  position: relative;
+  text-align: center;
+  border-bottom-style: solid;
+  border-bottom-color: var(--DK2);
+  border-bottom-width: 5px;
+}
+.fretBlackout {
+  width: var(--stringWidth);
+  height: 50px;
+  background-color: var(--DK4);
+  margin: 0px;
+  padding: 0px;
+  grid-area: span 1 / span 1;
+  position: relative;
+  text-align: center;
+  border-bottom-style: solid;
+  border-bottom-color: var(--DK4);
+  border-bottom-width: 5px;
+}
+
+.stringLabel {
+  display: grid;
+  width: calc( var(--stringWidth) / 2);
+  height: 800px;
+  background-color: var(--LT3);
+  margin: 0px;
+  padding: 0px;
+  grid-template-columns: 100%;
+  grid-auto-flow: row;
+  grid-area: span 1 / span 1;
+  position: relative;
+}
+.fretLabel {
+  width: 25px;
+  height: 50px;
+  background-color: var(--LT4);
+  margin: 0px;
+  padding: 0px;
+  grid-area: span 1 / span 1;
+  position: relative;
+  text-align: center;
+  border-bottom-style: solid;
+  border-bottom-color: var(--DK2);
+  border-bottom-width: 5px;
+  line-height: 30px;
+  text-size: 10px;
+}
+.fret {
+  width: 50px;
+  height: 50px;
+  background-color: var(--LT4);
+  margin: 0px;
+  padding: 0px;
+  grid-area: span 1 / span 1;
+  position: relative;
+  text-align: center;
+  border-bottom-style: solid;
+  border-bottom-color: var(--DK2);
+  border-bottom-width: 5px;
+}
+
+.stringLine {
+  position: absolute;
+  height: 1000px;
+  width: 25px;
+  border-right-style: solid;
+  border-right-color: var(--black);
+  border-right-width: 2px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+
+/*
+===================================================================================================================
+===================================================================================================================
+===================================================================================================================
+-----------------------------------   Fret Note Buttons
+===================================================================================================================
+===================================================================================================================
+===================================================================================================================
+*/
+
+.fretNote {
+  width: 15px;
+  height: 15px;
+  border-style: dotted;
+  border-color: var(--black);
+  border-width: 1px;
+  border-radius: 15px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  background-color: var(--DK4);
+  text-align: center;
+  line-height: 10px;
+  font-size: 6px;
+  color: transparent;
+  opacity: 0;
+  box-sizing: content-box;
+  padding: 0px;
+}
+
+.chordFretNote {
+  width: 30px;
+  height: 30px;
+  border-style: solid;
+  border-color: var(--black);
+  border-width: 1px;
+  border-radius: 30px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  background-color: var(--DK4);
+  color: var(--LT4);
+  text-align: center;
+  line-height: 30px;
+  font-size: 10px;
+  opacity: 1;
+
+}
+.fretNoteOffKey {
+  border-color: var(--subduedWarnRed);
+  border-width: 2.5px;
+  opacity: 1;
+
+}
+.smallFretNote {
+  width: 15px;
+  height: 15px;
+  border-style: dotted;
+  border-color: var(--DK4);
+  border-width: 1px;
+  border-radius: 15px;
+  background-color: var(--LT4);
+  text-align: center;
+  line-height: 15px;
+  font-size: 10px;
+  color: var(--LT1); 
+  opacity: 1;
+
+}
+.labelledFretNote {
+  width: 30px;
+  height: 30px;
+  border-style: solid;
+  border-radius: 5px 30px 30px 30px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  background-color: var(--DK4);
+  color: var(--LT4);
+  text-align: center;
+  line-height: 30px;
+  font-size: 16px;
+  opacity: 1;
+  
+}
+.chordNoteLabel {
+  display: none;
+  width: 10px;
+  height: 10px;
+  border-style: none;
+  margin: 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 15;
+  background-color: transparent;
+  color: var(--LT4);
+  text-align: center;
+  line-height: 10px;
+  font-size: 10px;
+}
+
+
+.stringWithSelected .labelledFretNote {
+  background-color: var(--LT4);
+  border-color: var(--LT1);
+  border-style: dotted;
+  color: black;
+}
+.stringWithSelected .fretNoteSelected {
+  background-color: var(--DK4);
+  border-color: var(--black);
+  border-style: solid;
+  color: var(--LT4);
+}
+
+.stringWithSelected .labelledFretNote .chordNoteLabel {
+  color: black;
+}
+.stringWithSelected .fretNoteSelected .chordNoteLabel {
+  color: var(--LT4);
+}
+
+/*
+**************************************************************************
+**************************************************************************
+**************************************************************************
+**************************************************************************
+*   
+*/
+
+.CHORD_PANEL{
+  width: 420px;
+  max-width: 50vw;
+  height: 350px;
+  background-color: var(--LT4);
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-column-gap: 0px;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 40px);
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.CHORD_PANEL3{
+  width: 100%;
+  max-width: 210px;
+  height: 290px;
+  background-color: var(--MID);
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 0px;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 40px);
+  margin: 0px;
+  padding: 4px 0px;
+  
+}
+
+.RELCHORD_PANEL{
+  width: 420px;
+  max-width: 50vw;
+  background-color: var(--MID);
+  border-style: solid solid solid solid;
+  border-color: var(--black);
+  border-width: 1px;
+  border-radius: 2px ;
+  display: flex;
+  flex-wrap:  wrap;
+  margin: 0px 4px;
+  padding: 0px 4px;
+}
+
+.CHORD_PANELSET{
+  width: 420px;
+  max-width: 50vw;
+  background-color: var(--MID);
+  border-style: solid none none solid;
+  border-color: var(--black);
+  border-width: 1px;
+  border-radius: 2px ;
+  display: flex;
+  flex-wrap:  wrap;
+  margin: 0px 4px;
+  padding: 0px 4px;
+}
+
+.CHORD_BUTTON{
+  border: 0.5px dotted var(--DK1);
+  padding: 2px;
+  font-family: Monospace;
+  font-weight: bold;
+  background-color: var(--LT3);
+  border-style: dotted;
+  position: relative;
+  grid-area: span 1 / span 1;
+  color: var(--black);
+}
+.CHORD_BUTTON.STATICSIZE{
+  width: 70px;
+  height: 40px;
+}
+
+.CHORD_BUTTON_INKEY{
+  color: var(--black);
+  background-color: var(--LT2);
+}
+.CHORD_BUTTON_OFFKEY{
+  font-style: italic;
+  font-weight: normal;
+  color: var(--DK1);
+  background-color: var(--LT4);
+}
+.CHORD_BUTTON_SYNON{
+  color: var(--subduedWarnGreen);
+}
+.CHORD_BUTTON_SELECTED {
+  border: 1px dotted var(--LT4);
+  background-color: var(--DK3);
+  color: var(--white);
+}
+.CHORD_BUTTON_UPARROW {
+  position: absolute;
+  top: 0px;
+  right: 3px;
+  height: 10px;
+  color: var(--subduedWarnGreen);
+  background-color: transparent;
+  border-style: none;
+  text-align: right;
+  font-size: 8px;
+}
+.CHORD_BUTTON_DNARROW {
+  position: absolute;
+  bottom: 4px;
+  right: 3px;
+  height: 10px;
+  font-size: larger;
+  color: var(--subduedWarnRed);
+  background-color: transparent;
+  border-style: none;
+  font-size: 8px;
+  text-align: right;
+}
+/*
+.CHORD_BUTTON_UPARROW {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid var(--subduedWarnGreen);
+  height: 0px;
+  width:  0px;
+}
+.CHORD_BUTTON_DNARROW {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--subduedWarnGreen);
+  height: 0px;
+  width:  0px;
+}*/
+.InstrumentTitleBox{
+	width: 30%;
+	font-size: 10px;
+	background-color: white;
+	border: 1px solid black;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+.CHORD_NOBUTTON{
+  border: 0px solid var(--LT2);
+  padding: 2px;
+  font-family: Monospace;
+  font-weight: bold;
+  background-color: var(--MID);
+  border-style: dotted;
+  position: relative;
+  grid-area: span 1 / span 1;
+
+}
+.TOP_SECTION {
+	display: flex;
+	flex-wrap: wrap;
+
+}
+/*
+	pointer-events: none;
+
+*/
+.PIANO_KEYBLOCK{
+	position: relative;
+	top: 0px;
+	left: 0px;
+	height: 220px;
+	width: 50px;
+}
+.PIANO_CHORDINFO {
+	position: relative;
+	top: 0px;
+        left: 0px;
+        height: 40px;
+        padding: 3px;
+        border: 1px solid var(--DK4);
+        background-color: var(--LT3);
+        border-radius: 5px;
+        margin: 0px 10px;
+}
+.PIANO_WHITEKEY {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 220px;
+	width: 50px;
+	z-index: 1;
+    border: 1px solid var(--DK4);
+	vertical-align: bottom;
+    margin: 0px;
+	padding: 0px;
+	background-color: white;
+    overflow: visible;
+}
+
+.PIANO_BLACKKEY {
+	position: absolute;
+	top: 0px;
+	right: -15px;
+	
+	height: 140px;
+	width: 30px;
+	z-index: 20;
+
+    border: 1px solid var(--DK4);
+	vertical-align: bottom;
+    margin: 0px;
+	padding: 0px;
+	background-color: black;
+    overflow: visible;
+
+}
+.PIANO_KEYBOARD_SUPER {
+	display: flex;
+
+}
+.PIANO_KEYBOARD {
+	display: flex;
+	position: relative;
+
+}
+
+.PIANO_KEY {
+    vertical-align: bottom;
+	font-size: 10px;
+  box-sizing: content-box;
+  padding: 0px;
+}
+.PIANO_KEYLABEL {
+	display: block;
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	height: 30px;
+	width: 30px;
+	border: 1px solid black;
+	border-radius: 30px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 30px;
+	background-color: white;
+	pointer-events: none;
+    font-size: 14px;
+}
+
+/*
+.PIANO_ACTIVEKEY {
+	background-color: white;
+	color: black;
+}
+
+.PIANO_INACTIVE {
+	background-color: white;
+	color: transparent;
+}
+
+.PIANO_ACCIDENTAL.PIANO_ACTIVE {
+	background-color: white;
+	color: red;
+}
+
+.PIANO_ACCIDENTAL.PIANO_INACTIVE {
+	background-color: black;
+	color: transparent;
+}*/
+
+
+.PIANO_INACTIVE  .PIANO_KEYLABEL{
+  border-color: black;
+  height: 5px;
+  width: 5px;
+  border-radius: 5px;
+  background-color: white;
+  bottom: 15px;
+  color: transparent;
+}
+
+.PIANO_ACCIDENTAL.PIANO_ACTIVEKEY .PIANO_KEYLABEL{
+  border-color: red;
+  color: red;
+  background-color: white;
+}
+.PIANO_ACCIDENTAL.PIANO_INACTIVE  .PIANO_KEYLABEL{
+  display: none;
+}
+.PIANO_ACCIDENTAL.PIANO_INACTIVE.PIANO_BLACKKEY  .PIANO_KEYLABEL{
+  border-color: white;
+  
+}
+
+
+
+.CONTROL_PANEL {
+	background-color: var(--LT4);
+	border: 1px solid var(--DK4);
+	padding: 10px;
+	z-index: 50;
+}
+
+.STAFF_HOLDER{
+	--noteCenter: 80px;
+	--staffWidth: 300px;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	margin: 0px;
+	border-style: none;
+	padding: 0px;
+	height: 160px;
+	width: var(--staffWidth);
+	background-color: white;
+	border: 1px solid black;
+}
+.STAFF_LINE {
+	position: absolute;
+	left: 0px;
+	top: 45px;
+    border-bottom: 1px solid var(--DK4);
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+	width: var(--staffWidth);
+    box-sizing: border-box;	
+}
+.STAFF_LINE.INVIS {
+    border-bottom: 1px solid transparent;
+}
+.STAFF_FLOAT {
+	position: absolute;
+    border-bottom: 2px solid var(--DK4);
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+	left: calc(var(--noteCenter) - 5px);
+	top: 45px;
+	width: 20px;
+	display: none;
+    box-sizing: border-box;	
+}
+.STAFF_LINE_M2 {
+	height: 84px;
+}
+.STAFF_LINE_M1 {
+	height: 72px;
+}
+.STAFF_LINE_1 {
+	height: 60px;
+}
+.STAFF_LINE_2 {
+	height: 48px;
+}
+.STAFF_LINE_3 {
+	height: 36px;
+}
+.STAFF_LINE_4 {
+	height: 24px;
+}
+.STAFF_LINE_5 {
+	height: 12px;
+}
+.STAFF_LINE_P1 {
+	top: 33px;
+	height: 12px;
+}
+.STAFF_LINE_P2 {
+	top: 21px;
+	height: 12px;
+}
+.STAFF_LINE_P3 {
+	top: 9px;
+	height: 12px;
+}
+.STAFF_LINE_P4 {
+	top: -3px;
+	height: 12px;
+}
+
+.STAFF_LABEL {
+	position: absolute;
+	left: 130px;
+    bottom: -5px;
+	font-size: 8px;
+	background-color: white;
+	border: 1px solid transparent;
+	height: 10px;
+	width: 10px;
+	line-height: 10px;
+	border-radius: 10px;
+	text-align: center;
+}
+.STAFF_LABEL_MID {
+	position: absolute;
+	left: 140px;
+    bottom: 0px;
+	font-size: 8px;
+	background-color: white;
+	border: 1px solid transparent;
+	height: 10px;
+	width: 10px;
+	line-height: 10px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.STAFF_NOTE {
+	position: absolute;
+	left: var(--noteCenter);
+	height: 10px;
+	width: 11px;
+	border: 4px solid black;
+	background-color: black;
+	border-radius: 15px;
+    box-sizing: border-box;	
+}
+
+.STAFF_NOTE_MODLABEL {
+	position: absolute;
+	left: -20px;
+    bottom: 0px;
+	top: 0px;
+	margin-bottom: auto;
+	margin-top: auto;
+	font-size: 18px;
+	height: 20px;
+	line-height: 15px;
+}
+.STAFF_NOTE.RIGHT .STAFF_NOTE_MODLABEL {
+	left: 10px;
+}
+.STAFF_NOTE~.STAFF_NOTE .STAFF_NOTE_MODLABEL{
+	position: absolute;
+	left: 10px;
+    bottom: 0px;
+	top: 0px;
+	margin-bottom: auto;
+	margin-top: auto;
+	font-size: 22px;
+	height: 20px;
+	line-height: 20px;
+}
+
+.STAFF_NOTE.MID {
+	bottom: 1px;
+}
+.STAFF_NOTE.UP {
+	bottom: 7px;
+}
+.STAFF_NOTE.DN {
+	bottom: -5px;
+}
+
+.STAFF_NOTE::after{
+	content:"";
+	position: absolute;
+	bottom:0px;
+	right:-3.5px;
+	width:1px;
+	height:30px;
+	border-right: 2px solid black;
+}
+.STAFF_NOTE ~ .STAFF_NOTE {
+	left: calc(var(--noteCenter) + 10px);
+}
+.STAFF_NOTE.RIGHT {
+	left: calc(var(--noteCenter) + 10px);
+}
+
+.STAFF_NOTE ~ .STAFF_NOTE::after{
+	content:"";
+	position: absolute;
+	bottom:0px;
+	right:-3.5px;
+	width:1px;
+	height:30px;
+	border-right: 2px solid transparent;
+}
+.STAFF_NOTE.RIGHT::after{
+	content:"";
+	position: absolute;
+	bottom:0px;
+	right:-3.5px;
+	width:1px;
+	height:30px;
+	border-right: 2px solid transparent;
+}
+
+.CLEF_IMAGE {
+	position: absolute;
+	top: -5px;
+	left: 0px;
+	height: 85px;
+}
+
+/*
+.STAFF_LINE.INVIS .STAFF_NOTE.DN::after {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 15px;
+	height: 5px;
+	border-top: 1px solid black;
+}*/
+
+#KEY_SELECT_PANEL {
+  width: 290px;
+  height: 75px;
+  background-color: var(--MID);
+  display: grid;
+  grid-template-columns: repeat(14, 20px);;
+  grid-column-gap: 0px;
+  grid-auto-flow: row;
+  grid-template-rows: auto auto auto;
+  margin: 0px;
+  padding: 6px 6px;
+  font-size: 12px;
+}
+.KEY_BUTTON{
+  width: 40px;
+  height: 20px;
+  border: 0.5px dotted var(--DK1);
+  padding: 2px;
+  font-family: Monospace;
+  font-weight: bold;
+  background-color: var(--LT3);
+  border-style: dotted;
+  position: relative;
+  grid-area: span 1 / span 2;
+  color: var(--black);
+  margin: 0px 0px;
+  font-size: 12px;
+  box-sizing: content-box;
+}
+
+.KEY_BUTTON_SELECTED {
+  border: 1px dotted var(--LT4);
+  background-color: var(--DK3);
+  color: var(--white);
+}
+
+.KEY_BUTTON_BUFFER{
+  width: 40px;
+  height: 20px;
+  border: 0.5px dotted var(--DK1);
+  padding: 2px;
+  font-family: Monospace;
+  font-weight: bold;
+  background-color: var(--MID);
+  border-style: none;
+  position: relative;
+  grid-area: span 1 / span 2;
+  color: var(--black);
+  margin: 0px 0px;
+
+}
+.KEY_BUTTON_HALFBUFFER{
+  width: 20px;
+  height: 20px;
+  border: 0.5px dotted var(--DK1);
+  padding: 2px;
+  font-family: Monospace;
+  font-weight: bold;
+  background-color: var(--MID);
+  border-style: none;
+  position: relative;
+  grid-area: span 1 / span 1;
+  color: var(--black);
+  margin: 0px 0px;
+
+}
+#SELECT_SCALEKEYTYPE{
+	width: 100%;
+	grid-area: span 1 / span 14;
+}
+
+
+
+
+
+
+
+.MINIFRET_HOLDER {
+   --scalingFactor:  1;
+   --baseWidth:      15px;
+   --baseHeight:     24px;
+   --stringCt:       4;
+   --fretCt:         5;
+   --fretWd: calc(var(--baseWidth) * (var(--stringCt) + 0.5) * var(--scalingFactor));
+   --noteSize: 10px;
+   --holderPadding: 5px;
+   --holderLeftPad: 10px;
+   height: calc(var(--baseHeight) * var(--fretCt) * var(--scalingFactor) + var(--holderPadding)*2 );
+   width: calc( var(--fretWd) + var(--holderPadding)*2 + var(--holderLeftPad));
+   padding: var(--holderPadding);
+   background-color: var(--LT4);
+   box-sizing: content-box;
+
+}
+
+.MINIFRET_FRETBOARD {
+   height: calc(var(--baseHeight) * var(--fretCt) * var(--scalingFactor));
+   width:  var(--fretWd);
+   position: relative;
+   border-top: 1px solid black;
+   background-color: white;
+   padding: 0px;
+   margin: 0px;
+   box-sizing: content-box;
+   left: var(--holderLeftPad);
+   top: 10px
+}
+.MINIFRET_FRET {
+   height: calc(var(--baseHeight) * var(--scalingFactor));
+   width: var(--fretWd);
+   border-bottom: 2px solid black;
+   box-sizing: border-box;
+   position: relative;
+}
+.MINIFRET_STRINGLINE {
+   --stringNum: 0;
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: calc( (var(--baseWidth) * ( var(--stringNum) + 0.75 )) * var(--scalingFactor) );
+   height: calc(var(--baseHeight) * var(--fretCt) * var(--scalingFactor));
+   border-right: 1px solid black;
+   box-sizing: border-box;
+}
+.MINIFRET_STRINGLINE.S0{
+   --stringNum: 0;
+}
+.MINIFRET_STRINGLINE.S1{
+   --stringNum: 1;
+}
+.MINIFRET_STRINGLINE.S2{
+   --stringNum: 2;
+}
+.MINIFRET_STRINGLINE.S3{
+   --stringNum: 3;
+}
+.MINIFRET_STRINGLINE.S4{
+   --stringNum: 4;
+}
+.MINIFRET_STRINGLINE.S5{
+   --stringNum: 5;
+}
+.MINIFRET_STRINGLINE.S6{
+   --stringNum: 6;
+}
+.MINIFRET_NOTE {
+   --NOTEFRET: 0;
+   --NOTESTRING: 0;
+   position: absolute;
+   top:  calc( ( var(--NOTEFRET)   + 0.5 ) * var(--baseHeight) - (var(--noteSize)/2) );
+   left: calc( ( ( var(--NOTESTRING) + 0.75 ) * var(--baseWidth)  - (var(--noteSize)/2)) * var(--scalingFactor) );
+   width: calc(var(--noteSize) * var(--scalingFactor));
+   height: calc(var(--noteSize) * var(--scalingFactor));
+   border: 1px solid black;
+   border-radius: calc(var(--noteSize) * var(--scalingFactor));
+   box-sizing: border-box;
+   background-color: black;
+}
+.MINIFRET_OPEN {
+   --NOTESTRING: 2;
+   position: absolute;
+   top:  calc( 0px - var(--noteSize) * 1.1 * var(--scalingFactor) );
+   left: calc( ( ( var(--NOTESTRING) + 0.75 ) * var(--baseWidth)  - (var(--noteSize)/2)) * var(--scalingFactor) );
+   width: calc(var(--noteSize) * var(--scalingFactor));
+   height: calc(var(--noteSize) * var(--scalingFactor));
+   border: 1px solid black;
+   border-radius: calc(var(--noteSize) * var(--scalingFactor));
+   box-sizing: border-box;
+   background-color: white;
+}
+.MINIFRET_POSLABEL {
+   position: absolute;
+   top:    0px;
+   left:   calc( 0px - var(--noteSize) * var(--scalingFactor) * 2.2);
+   width:  calc(var(--noteSize) * var(--scalingFactor) * 2);
+   height:      calc(var(--baseHeight) * var(--scalingFactor));
+   font-size:   calc( 14px * var(--scalingFactor) );
+   text-align:  right;
+   line-height: calc(var(--baseHeight) * var(--scalingFactor));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
