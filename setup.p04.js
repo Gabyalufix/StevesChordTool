@@ -44,7 +44,9 @@ INSTRUMENTS_IDLIST = [
  ["MANDOLIN","Mandolin"],
  ["UKELELE","Ukelele"],
  ["GUITAR","Guitar"],
- ["BANJO","Banjo"]
+ ["BANJO","Banjo"],
+ ["GUITALELE","Guitalele"]
+  
 ]
 
 console.log("Setting scale chords...")
