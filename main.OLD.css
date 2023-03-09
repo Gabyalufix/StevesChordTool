@@ -39,7 +39,6 @@
   --subduedWarnRed:    #e23232;
   --subduedWarnYellow: #e29532;
   --subduedWarnGreen:  #1bba21;
-  --gentleGreen: #B7E5B9;
   --bioTextDK: #26301d;
   --engTextDK: #3b1312;
   --psyTextDK: #221d2f;
@@ -335,9 +334,8 @@ h5 {
   border-color: var(--subduedWarnRed);
   border-width: 2.5px;
   opacity: 1;
+
 }
-
-
 .smallFretNote {
   width: 15px;
   height: 15px;
@@ -372,8 +370,6 @@ h5 {
   opacity: 1;
   
 }
-
-
 .chordNoteLabel {
   display: none;
   width: 10px;
@@ -592,7 +588,7 @@ h5 {
 	position: relative;
 	top: 0px;
 	left: 0px;
-	height: 160px;
+	height: 220px;
 	width: 50px;
 }
 .PIANO_CHORDINFO {
@@ -610,7 +606,7 @@ h5 {
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	height: 160px;
+	height: 220px;
 	width: 50px;
 	z-index: 1;
     border: 1px solid var(--DK4);
@@ -626,7 +622,7 @@ h5 {
 	top: 0px;
 	right: -15px;
 	
-	height: 90px;
+	height: 140px;
 	width: 30px;
 	z-index: 20;
 
@@ -638,18 +634,10 @@ h5 {
     overflow: visible;
 
 }
-.PIANO_KEYBOARD_PANE {
-	position: relative;
-	width: 1200px;
-    overflow-x: auto;
-	overflow-y: hidden;
-}
 .PIANO_KEYBOARD_SUPER {
 	display: flex;
 
 }
-
-
 .PIANO_KEYBOARD {
 	display: flex;
 	position: relative;
@@ -736,123 +724,8 @@ h5 {
 	z-index: 50;
 }
 
-.NSTAFF_HOLDER_HOLDER{
-  display: flex;
-  flex-wrap:  wrap;
-}
-.NSTAFF_HOLDER{
-	--noteCenter: 200px;
-	--staffWidth: 300px;
-	position: relative;
-	left: 0px;
-	top: 0px;
-	margin: 0px;
-	border-style: none;
-	padding: 0px;
-	height: 600px;
-	width: var(--staffWidth);
-	max-width: 90vw;
-	background-color: white;
-	border: 1px solid black;
-}
-.NSTAFF_LINE {
-	position: absolute;
-	left: 0px;
-	top: 24px;
-    border-bottom: 1px solid var(--DK4);
-    border-left-style: none;
-    border-right-style: none;
-    border-top-style: none;
-	width: var(--staffWidth);
-    box-sizing: border-box;	
-}
-.NSTAFF_LINE.INVIS {
-    border-bottom: 1px solid transparent;
-}
-.NSTAFF_HOVER {
-	position: absolute;
-	left: 0px;
-	top: 24px;
-    border-bottom: 1px solid transparent;
-    border-left-style: none;
-    border-right-style: none;
-    border-top-style: none;
-	width: var(--staffWidth);
-    box-sizing: border-box;	
-}
-.NSTAFF_NOTE_HOVER {
-	position: absolute;
-	left: var(--noteCenter);
-	height: 20px;
-	width: 22px;
-	border: 1px solid black;
-	background-color: black;
-	border-radius: 30px;
-    box-sizing: border-box;	
-	font-size: 10px;
-    color: white;
-}
-.NSTAFF_NOTE_HOVER.MID {
-	bottom: -4px;
-}
-.NSTAFF_NOTE_HOVER.UP {
-	bottom: 14px;
-}
-.NSTAFF_NOTE_HOVER.DN {
-	bottom: -10px;
-}
-.NSTAFF_NOTE_HOVER.GREYED {
-	background-color: var(--greenMD);
-	display: block;
-	opacity: 0.25;
-}
-.NSTAFF_NOTE_HOVER.BLACK {
-	background-color: green;
-	color: white;
-	display: block;	
-}
-.NSTAFF_NOTE_HOVER.HIDDEN {
-	display: none;
-}
-
-
-.fretNoteHovered {
-  border-color: var(--greenMD);
-  border-width: 3.5px;
-  opacity: 1;
-}
-.fretNoteHoveredOctave {
-  border-color: var(--greenDK);
-  background-color: var(--greenLT);
-  border-width: 3.5px;
-  color: black;
-  opacity: 1;
-}
-
-
-.NSTAFF_FLOATLINE {
-	position: absolute;
-	left: calc(var(--noteCenter) - 6px);
-	height: 0px;
-	width: 35px;
-    border-bottom: 1px solid var(--DK4);
-    border-left-style: none;
-    border-right-style: none;
-    border-top-style: none;
-	background-color: transparent;
-	bottom: -6px;	
-    /*box-sizing: border-box;	*/
-}
-
-.NCLEF_IMAGE {
-	position: relative;
-	top: -10px;
-	left: 0px;
-	height: 170px;
-}
-
 .STAFF_HOLDER{
-	--noteCenter: 200px;
+	--noteCenter: 80px;
 	--staffWidth: 300px;
 	position: relative;
 	left: 0px;
@@ -860,17 +733,15 @@ h5 {
 	margin: 0px;
 	border-style: none;
 	padding: 0px;
-	height: 320px;
+	height: 160px;
 	width: var(--staffWidth);
-	max-width: 90vw;
 	background-color: white;
 	border: 1px solid black;
-	
 }
 .STAFF_LINE {
 	position: absolute;
 	left: 0px;
-	top: 90px;
+	top: 45px;
     border-bottom: 1px solid var(--DK4);
     border-left-style: none;
     border-right-style: none;
@@ -888,163 +759,163 @@ h5 {
     border-right-style: none;
     border-top-style: none;
 	left: calc(var(--noteCenter) - 5px);
-	top: 90px;
-	width: 40px;
+	top: 45px;
+	width: 20px;
 	display: none;
     box-sizing: border-box;	
 }
 .STAFF_LINE_M2 {
-	height: 168px;
+	height: 84px;
 }
 .STAFF_LINE_M1 {
-	height: 144px;
-}
-.STAFF_LINE_1 {
-	height: 120px;
-}
-.STAFF_LINE_2 {
-	height: 96px;
-}
-.STAFF_LINE_3 {
 	height: 72px;
 }
-.STAFF_LINE_4 {
+.STAFF_LINE_1 {
+	height: 60px;
+}
+.STAFF_LINE_2 {
 	height: 48px;
 }
-.STAFF_LINE_5 {
+.STAFF_LINE_3 {
+	height: 36px;
+}
+.STAFF_LINE_4 {
 	height: 24px;
+}
+.STAFF_LINE_5 {
+	height: 12px;
 }
 .STAFF_LINE_P1 {
-	top: 66px;
-	height: 24px;
+	top: 33px;
+	height: 12px;
 }
 .STAFF_LINE_P2 {
-	top: 42px;
-	height: 24px;
+	top: 21px;
+	height: 12px;
 }
 .STAFF_LINE_P3 {
-	top: 18px;
-	height: 24px;
+	top: 9px;
+	height: 12px;
 }
 .STAFF_LINE_P4 {
-	top: -6px;
-	height: 24px;
+	top: -3px;
+	height: 12px;
 }
 
 .STAFF_LABEL {
 	position: absolute;
 	left: 130px;
-    bottom: -10px;
-	font-size: 16px;
+    bottom: -5px;
+	font-size: 8px;
 	background-color: white;
 	border: 1px solid transparent;
-	height: 20px;
-	width: 20px;
-	line-height: 20px;
-	border-radius: 20px;
+	height: 10px;
+	width: 10px;
+	line-height: 10px;
+	border-radius: 10px;
 	text-align: center;
 }
 .STAFF_LABEL_MID {
 	position: absolute;
-	left: 150px;
+	left: 140px;
     bottom: 0px;
-	font-size: 16px;
+	font-size: 8px;
 	background-color: white;
 	border: 1px solid transparent;
-	height: 20px;
-	width: 20px;
-	line-height: 20px;
-	border-radius: 20px;
+	height: 10px;
+	width: 10px;
+	line-height: 10px;
+	border-radius: 10px;
 	text-align: center;
 }
 
 .STAFF_NOTE {
 	position: absolute;
 	left: var(--noteCenter);
-	height: 20px;
-	width: 22px;
-	border: 8px solid black;
+	height: 10px;
+	width: 11px;
+	border: 4px solid black;
 	background-color: black;
-	border-radius: 30px;
+	border-radius: 15px;
     box-sizing: border-box;	
 }
 
 .STAFF_NOTE_MODLABEL {
 	position: absolute;
-	left: -40px;
+	left: -20px;
     bottom: 0px;
 	top: 0px;
 	margin-bottom: auto;
 	margin-top: auto;
 	font-size: 18px;
-	height: 40px;
-	line-height: 30px;
+	height: 20px;
+	line-height: 15px;
 }
 .STAFF_NOTE.RIGHT .STAFF_NOTE_MODLABEL {
 	left: 10px;
 }
 .STAFF_NOTE~.STAFF_NOTE .STAFF_NOTE_MODLABEL{
 	position: absolute;
-	left: 20px;
+	left: 10px;
     bottom: 0px;
 	top: 0px;
 	margin-bottom: auto;
 	margin-top: auto;
 	font-size: 22px;
-	height: 40px;
-	line-height: 40px;
+	height: 20px;
+	line-height: 20px;
 }
 
 .STAFF_NOTE.MID {
-	bottom: 2px;
+	bottom: 1px;
 }
 .STAFF_NOTE.UP {
-	bottom: 14px;
+	bottom: 7px;
 }
 .STAFF_NOTE.DN {
-	bottom: -10px;
+	bottom: -5px;
 }
 
 .STAFF_NOTE::after{
 	content:"";
 	position: absolute;
 	bottom:0px;
-	right:-7px;
-	width: 2px;
-	height:60px;
+	right:-3.5px;
+	width:1px;
+	height:30px;
 	border-right: 2px solid black;
 }
 .STAFF_NOTE ~ .STAFF_NOTE {
-	left: calc(var(--noteCenter) + 20px);
+	left: calc(var(--noteCenter) + 10px);
 }
 .STAFF_NOTE.RIGHT {
-	left: calc(var(--noteCenter) + 20px);
+	left: calc(var(--noteCenter) + 10px);
 }
 
 .STAFF_NOTE ~ .STAFF_NOTE::after{
 	content:"";
 	position: absolute;
 	bottom:0px;
-	right:-7px;
-	width: 1px;
-	height:60px;
+	right:-3.5px;
+	width:1px;
+	height:30px;
 	border-right: 2px solid transparent;
 }
 .STAFF_NOTE.RIGHT::after{
 	content:"";
 	position: absolute;
 	bottom:0px;
-	right:-7px;
+	right:-3.5px;
 	width:1px;
-	height:60px;
+	height:30px;
 	border-right: 2px solid transparent;
 }
 
 .CLEF_IMAGE {
 	position: absolute;
-	top: -10px;
+	top: -5px;
 	left: 0px;
-	height: 170px;
+	height: 85px;
 }
 
 /*

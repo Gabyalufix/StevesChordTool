@@ -7,7 +7,8 @@ function instrument(
    fretDots,
    fretDoubleDots,
    abbrivName,
-   blackoutFrets
+   blackoutFrets,
+   stringOctaves
   ){
     this.instrumentName = instrumentName;
     this.stringIIX = stringIIX;
@@ -16,6 +17,7 @@ function instrument(
     this.fretDoubleDots = fretDoubleDots;
     this.abbrivName = abbrivName;
     this.blackoutFrets = blackoutFrets;
+	this.stringOctaves = stringOctaves;
     
     this.copyInstrument = function(){
        return new instrument(this.instrumentName,
@@ -24,17 +26,10 @@ function instrument(
                          this.fretDots.slice(),
                          this.fretDoubleDots.slice(),
                          this.abbrivName,
-                         this.blackoutFrets)
+                         this.blackoutFrets,
+						 this.stringOctaves)
     }
 }
-
-
-
-var STAFF_HOLDER = document.getElementById("STAFF_HOLDER");
-var STAVES = STAFF_HOLDER.getElementsByClassName("STAFF_LINE")
-
-var INSTRUMENT_COUNTER = 0;
-
 
 
 

@@ -16,6 +16,30 @@
 </head>
 <body>
 
+<div  id="STAFF_HOLDER" class="STAFF_HOLDER">
+
+<div id="STAFF_LINE_M2"   class="STAFF_LINE LOWFLOAT STAFF_LINE_M2 INVIS"></div>
+<div id="STAFF_FLOAT_M2"  class="STAFF_FLOAT LOWFLOAT STAFF_LINE_M2"></div>
+<div id="STAFF_LINE_M1"   class="STAFF_LINE LOWFLOAT STAFF_LINE_M1 INVIS"><div class="STAFF_LABEL">C</div><div class="STAFF_LABEL_MID">D</div></div>
+<div id="STAFF_FLOAT_M1"  class="STAFF_FLOAT LOWFLOAT STAFF_LINE_M1"></div>
+<div id="STAFF_LINE_1" class="STAFF_LINE STAFF_LINE_1"> <img class="CLEF_IMAGE" src="media/trebleclef.png" alt="treble clef">  <div class="STAFF_LABEL">E</div><div class="STAFF_LABEL_MID">F</div> </div>
+<div id="STAFF_LINE_2" class="STAFF_LINE STAFF_LINE_2"><div class="STAFF_LABEL">G</div><div class="STAFF_LABEL_MID">A</div></div>
+<div id="STAFF_LINE_3" class="STAFF_LINE STAFF_LINE_3"><div class="STAFF_LABEL">B</div><div class="STAFF_LABEL_MID">C</div></div>
+<div id="STAFF_LINE_4" class="STAFF_LINE STAFF_LINE_4"><div class="STAFF_LABEL">D</div><div class="STAFF_LABEL_MID">E</div></div>
+<div id="STAFF_LINE_5" class="STAFF_LINE STAFF_LINE_5"><div class="STAFF_LABEL">F</div><div class="STAFF_LABEL_MID">G</div></div>
+<div id="STAFF_FLOAT_P1"  class="STAFF_FLOAT HIGHFLOAT STAFF_LINE_P1"></div>
+<div id="STAFF_LINE_P1"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P1 INVIS"><div class="STAFF_LABEL">A</div><div class="STAFF_LABEL_MID">B</div></div>
+<div id="STAFF_FLOAT_P2"  class="STAFF_FLOAT HIGHFLOAT  STAFF_LINE_P2"></div>
+<div id="STAFF_LINE_P2"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P2 INVIS"><div class="STAFF_LABEL">C</div><div class="STAFF_LABEL_MID">D</div></div>
+<div id="STAFF_FLOAT_P3"  class="STAFF_FLOAT HIGHFLOAT  STAFF_LINE_P3"></div>
+<div id="STAFF_LINE_P3"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P3 INVIS"><div class="STAFF_LABEL">E</div><div class="STAFF_LABEL_MID">F</div></div>
+<div id="STAFF_FLOAT_P4"  class="STAFF_FLOAT HIGHFLOAT  STAFF_LINE_P4"></div>
+<div id="STAFF_LINE_P4"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P4 INVIS"><div class="STAFF_LABEL">G</div></div>
+
+
+</div>
+
+<div id="PIANO_KEYBOARD_PANE" class="PIANO_KEYBOARD_PANE">
 
 <div id="PIANO_KEYBOARD_SUPER" class="PIANO_KEYBOARD_SUPER">
 <div class="PIANO_KEYBOARD">
@@ -102,7 +126,7 @@
   <button class="PIANO_WHITEKEY PIANO_KEY"><div class="PIANO_KEYLABEL">B</div></button>
 </div>
 
-
+</div>
 
 
 </div>
@@ -147,6 +171,9 @@ Instrument:
 
 <label><input type="checkbox" id="ShowPiano" name="ShowPiano" value="value" checked="true">Show Piano</label>
 <label><input type="checkbox" id="ShowStaff" name="ShowStaff" value="value" checked="true">Show Staff</label>
+<label><input type="checkbox" id="ShowTrebleClef" name="ShowStaff" value="value" checked="true">Treble Clef</label>
+<label><input type="checkbox" id="ShowAltoClef" name="ShowStaff" value="value" checked="false">Alto Clef</label>
+<label><input type="checkbox" id="ShowBassClef" name="ShowStaff" value="value" checked="true">Bass Clef</label>
 
 
 <div id="KEY_SELECT_PANEL">
@@ -181,28 +208,7 @@ Instrument:
 
 
 
-<div  id="STAFF_HOLDER" class="STAFF_HOLDER">
 
-<div id="STAFF_LINE_M2"   class="STAFF_LINE LOWFLOAT STAFF_LINE_M2 INVIS"></div>
-<div id="STAFF_FLOAT_M2"  class="STAFF_FLOAT LOWFLOAT STAFF_LINE_M2"></div>
-<div id="STAFF_LINE_M1"   class="STAFF_LINE LOWFLOAT STAFF_LINE_M1 INVIS"><div class="STAFF_LABEL">C</div><div class="STAFF_LABEL_MID">D</div></div>
-<div id="STAFF_FLOAT_M1"  class="STAFF_FLOAT LOWFLOAT STAFF_LINE_M1"></div>
-<div id="STAFF_LINE_1" class="STAFF_LINE STAFF_LINE_1"> <img class="CLEF_IMAGE" src="media/trebleclef.png" alt="treble clef">  <div class="STAFF_LABEL">E</div><div class="STAFF_LABEL_MID">F</div> </div>
-<div id="STAFF_LINE_2" class="STAFF_LINE STAFF_LINE_2"><div class="STAFF_LABEL">G</div><div class="STAFF_LABEL_MID">A</div></div>
-<div id="STAFF_LINE_3" class="STAFF_LINE STAFF_LINE_3"><div class="STAFF_LABEL">B</div><div class="STAFF_LABEL_MID">C</div></div>
-<div id="STAFF_LINE_4" class="STAFF_LINE STAFF_LINE_4"><div class="STAFF_LABEL">D</div><div class="STAFF_LABEL_MID">E</div></div>
-<div id="STAFF_LINE_5" class="STAFF_LINE STAFF_LINE_5"><div class="STAFF_LABEL">F</div><div class="STAFF_LABEL_MID">G</div></div>
-<div id="STAFF_FLOAT_P1"  class="STAFF_FLOAT HIGHFLOAT STAFF_LINE_P1"></div>
-<div id="STAFF_LINE_P1"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P1 INVIS"><div class="STAFF_LABEL">A</div><div class="STAFF_LABEL_MID">B</div></div>
-<div id="STAFF_FLOAT_P2"  class="STAFF_FLOAT HIGHFLOAT  STAFF_LINE_P2"></div>
-<div id="STAFF_LINE_P2"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P2 INVIS"><div class="STAFF_LABEL">C</div><div class="STAFF_LABEL_MID">D</div></div>
-<div id="STAFF_FLOAT_P3"  class="STAFF_FLOAT HIGHFLOAT  STAFF_LINE_P3"></div>
-<div id="STAFF_LINE_P3"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P3 INVIS"><div class="STAFF_LABEL">E</div><div class="STAFF_LABEL_MID">F</div></div>
-<div id="STAFF_FLOAT_P4"  class="STAFF_FLOAT HIGHFLOAT  STAFF_LINE_P4"></div>
-<div id="STAFF_LINE_P4"   class="STAFF_LINE HIGHFLOAT STAFF_LINE_P4 INVIS"><div class="STAFF_LABEL">G</div></div>
-
-
-</div>
 
 
 

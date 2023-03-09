@@ -46,7 +46,6 @@ INSTRUMENTS_IDLIST = [
  ["GUITAR","Guitar"],
  ["BANJO","Banjo"],
  ["GUITALELE","Guitalele"]
-  
 ]
 
 console.log("Setting scale chords...")
@@ -55,7 +54,7 @@ setupScaleChords()
 
 console.log("Setting instrument...")
 
-addInstrument("UKELELE");
+addInstrument("GUITAR");
 
 //var iselect0 = document.createElement("select");
 //iselect0.id = "INSTRUMENT_SELECT_0";
@@ -215,3 +214,29 @@ document.getElementById("CHORD_PANELSET").insertAdjacentElement("afterend",CHORD
 document.getElementById("CHORD_PANELSET").insertAdjacentElement("afterend",CHORD_PANELSET_EXPANDALL_BUTTON)
 
 assignChordButtonEvents()
+
+
+
+	var fnall = document.getElementsByClassName("fretNote");
+	for(var jj = 0; jj < fnall.length; jj++){
+		var fn = fnall[jj];
+		console.log("---> ADDING EVENT LISTENER TO: "+fn.noteOCTIIX);
+		fn.addEventListener('mouseenter', function(event){
+			//this.NOTEOBJ.style.display="block"
+			var ks = getCurrentScale();
+			var notexx = ks.scaleIIX.indexOf( this.noteIIX )
+			if( notexx >= 0 ){
+				var nn  = ks.scaleNOTESidx[notexx];
+				var nno = nn + (7 * Math.floor(this.noteOCTIIX / 12) )
+				markNoteOnStaff(nno);
+				console.log("["+nn+"/"+nno+"]");
+			}
+			console.log(this.id);
+		}.bind(fn));
+		fn.addEventListener('mouseleave', function(event){
+			//this.NOTEOBJ.style.display="none"
+			clearAllNotesOnStaff();				
+		}.bind(fn));
+	}
+
+

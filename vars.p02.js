@@ -1,4 +1,37 @@
 
+
+
+CLEF_LIST = [
+   { name : "Treble", checkBoxId: "ShowTrebleClef",
+     nlinesUP : 9, nlinesDN : 4, nlinesMD : 5,
+     img: "media/trebleclef.png", imgtop : -36, imght : 170,
+     baselineNote: 1, baselineOctave: 4	, baselineNoteName : "D4",
+     defaultHidden: false	 },
+   { name : "Bass", checkBoxId: "ShowBassClef",
+     nlinesUP : 2, nlinesDN : 7, nlinesMD : 5,
+     img: "media/800px-FClef.svg.png", imgtop : 0, imght : 80,
+     baselineNote: 3, baselineOctave: 2	,baselineNoteName : "F2",
+     defaultHidden: false	 },
+   { name : "Alto", checkBoxId: "ShowAltoClef",
+     nlinesUP : 2, nlinesDN : 2, nlinesMD : 5,
+     img: "media/800px-CClef.svg.png", imgtop : 0, imght : 96,
+   baselineNote: 2, baselineOctave: 3,baselineNoteName : "E3",
+     defaultHidden : true   }	 
+]
+
+
+SCALENOTE_NAMES = ["C","D","E","F","G","A","B"]
+
+SCALENOTE_LOOKUP = {
+	"C" : 0,
+	"D" : 1,
+	"E" : 2,
+	"F" : 3,
+	"G" : 4,
+	"A" : 5,
+	"B" : 6
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8,6 +41,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 NOTE_NAMES_GENERAL = ["C","C#/Db","D","D#/Eb",
                     "E","F","F#/Gb","G",
@@ -32,6 +67,33 @@ KEYROOT_NAMES_FLATS = [
 KEYROOT_IIX_FLATS = [
   1,3,5,6,8,10
 ]
+
+NOTE_TRANSLATE_TOFLAT = {
+	"C#" : "Db",
+	"D#" : "Eb",
+	"F#" : "Gb",
+	"G#" : "Ab",
+	"A#" : "Bb",
+	"Db" : "Db",
+	"Eb" : "Eb",
+	"Gb" : "Gb",
+	"Ab" : "Ab",
+	"Bb" : "Bb",
+	"C" : "C","A" : "A","B" : "B","D" :"D","E":"E","F":"F","G":"G"
+}
+NOTE_TRANSLATE_TOSHARP = {
+	"Db" : "C#",
+	"Eb" : "D#",
+	"Gb" : "F#",
+	"Ab" : "G#",
+	"Bb" : "A#",
+	"C#" : "C#",
+	"D#" : "D#",
+	"F#" : "F#",
+	"G#" : "G#",
+	"A#" : "A#",
+	"C" : "C","A" : "A","B" : "B","D" :"D","E":"E","F":"F","G":"G"
+}
 
  
 var NOTE_BASENAMES_SHARP = ["C","C","D","D",
@@ -63,16 +125,18 @@ CURRENT_SCALE_SHARPTYPE = "sharp";
 
 KEY_TYPE_INTERVALS = {
   "Major":[2,2,1,2,2,2],
-  "Minor":[2,1,2,2,1,2],
-  "MelodicMinor":[2,1,2,2,2,2,1],
-  "HarmonicMinor":[2,1,2,2,1,3,1],
+  "Minor":          [2,1,2,2,1,2,2],
+  "MelodicMinor":   [2,1,2,2,2,2,1],
+  "HarmonicMinor":  [2,1,2,2,1,3,1],
+  "MergedMinor":    [2,1,2,2,1,1,1,1,1],
   "Dorian":[2,1,2,2,2,1,2],
   "Phrygian":[1,2,2,2,1,2,2],
   "Lydian":[2,2,2,1,2,2,1],
   "Mixolydian":[2,2,1,2,2,1,2],
   "Aeolian":[2,1,2,2,1,2,2],
   "HungarianMjr":[3,1,2,1,2,1,2],
-  "Gypsy":[2,1,3,1,1,3,1],
+  "HungarianMnr":[2,1,3,1,1,3,1],
+  "DoubleHarmonic":[1,3,1,2,1,3,1],
   "Chromatic":[1,1,1,1,1,1,1,1,1,1,1],
   "MajorPentatonic":[2,2,3,2,3],
   "MinorPentatonic":[3,2,2,3,2],
@@ -83,13 +147,15 @@ KEY_TYPE_TITLES=[
     ["Minor","Natural Minor"],
     ["MelodicMinor","Melodic Minor"],
     ["HarmonicMinor","Harmonic Minor"],
+    ["MergedMinor","Merged Minor"],	
     ["Dorian","Dorian"],
     ["Phrygian","Phrygian"],
     ["Lydian","Lydian"],
     ["Mixolydian","Mixolydian"],
     ["Aeolian","Aeolian"],
     ["HungarianMjr","Hungarian Major"],
-    ["Gypsy","\"Gypsy\""],
+	["HungarianMnr","Hungarian Minor"],
+    ["DoubleHarmonic","\"Double Harmonic\""],
     ["Chromatic","Chromatic"],
     ["MajorPentatonic","Major Pentatonic"],
     ["MinorPentatonic","Minor Pentatonic"],
@@ -282,28 +348,32 @@ INSTRUMENT_MANDOLIN = new instrument(
   [7,2,9,4],
   [  20,  56.126,  52.976,  50.002,  47.196,  44.547,  42.047,  39.687,  37.459,  35.357,  33.373,  31.499,  29.732,  28.063,  26.488,  25.001,  23.598,22.273],
   [],
-  [],"Mando",[]
+  [],"Mando",[],
+  [3,4,4,5]
 )
 INSTRUMENT_UKELELE = new instrument(
   "Ukelele",
   [7,0,4,9],
   [  20,  56.126,  52.976,  50.002,  47.196,  44.547,  42.047,  39.687,  37.459,  35.357,  33.373,  31.499,  29.732,  28.063,  26.488,  25.001,  23.598,22.273],
   [],
-  [],"Uke",[]
+  [],"Uke",[],
+  [3,4,4,4]
 )
 INSTRUMENT_GUITAR = new instrument(
   "Guitar",
   [4,9,2,7,11,4],
   [  20,  56.126,  52.976,  50.002,  47.196,  44.547,  42.047,  39.687,  37.459,  35.357,  33.373,  31.499,  29.732,  28.063,  26.488,  25.001,  23.598,22.273],
   [],
-  [],"Guitar",[]
+  [],"Guitar",[],
+  [3,3,4,4,4,5]
 )
 INSTRUMENT_GUITALELE = new instrument(
   "Guitalele",
   [9,2,7,0,4,9],
   [  20,  56.126,  52.976,  50.002,  47.196,  44.547,  42.047,  39.687,  37.459,  35.357,  33.373,  31.499,  29.732,  28.063,  26.488,  25.001,  23.598,22.273],
   [],
-  [],"Guitalele",[]
+  [],"Guitalele",[],
+  [2,3,3,4,4,4]
 )
 //NOTE_NAMES_GENERAL = ["C","C#/Db","D","D#/Eb",
 //                    "E","F","F#/Gb","G",
@@ -314,7 +384,8 @@ INSTRUMENT_BANJO = new instrument(
   [7,2,7,11,2],
   [  20,  56.126,  52.976,  50.002,  47.196,  44.547,  42.047,  39.687,  37.459,  35.357,  33.373,  31.499,  29.732,  28.063,  26.488,  25.001,  23.598,22.273],
   [],
-  [],"Banjo",[[0,5]]
+  [],"Banjo",[[0,5]],
+  [4,3,3,4,4]
 )
 
 INSTRUMENTS = {

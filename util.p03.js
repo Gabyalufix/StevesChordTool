@@ -26,6 +26,25 @@ function selectChord(){
 }
 
 
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////// 
+//                          SETUP 
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+var maindivElement = document.getElementById("maindiv");
+
+
+var STAFF_HOLDER = document.getElementById("STAFF_HOLDER");
+var STAVES = STAFF_HOLDER.getElementsByClassName("STAFF_LINE")
+var INSTRUMENT_COUNTER = 0;
+
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -59,16 +78,6 @@ function getNoteIIX(noteName){
 var CURRENT_SCALE = 0;
 //var CURRENT_SCALE_SHARPTYPE = "sharp";
 
-function getCurrentScale(){
-  var currentScale = CURRENT_SCALE;
-  console.log("currentScale: "+currentScale);
-  var currentScaleType = document.getElementById("SELECT_SCALEKEYTYPE").value;
-  console.log("currentScaleType: "+currentScaleType);
-  var intervals = KEY_TYPE_INTERVALS[ currentScaleType ];
-  var rootIIX = currentScale;
-  return {rootIIX:rootIIX, scaleType:currentScaleType,intervals:intervals}
-}
-
 function getScaleIIX(intervals,rootIIX){
   var currIIX = rootIIX;
   var scaleIIX = [rootIIX];
@@ -81,6 +90,29 @@ function getScaleIIX(intervals,rootIIX){
   console.log("---- scale: "+scaleIIX.join(","));
   return scaleIIX;
 }
+
+function getCurrentScale(){
+  var currentScale = CURRENT_SCALE;
+  console.log("currentScale: "+currentScale);
+  var currentScaleType = document.getElementById("SELECT_SCALEKEYTYPE").value;
+  console.log("currentScaleType: "+currentScaleType);
+  var intervals = KEY_TYPE_INTERVALS[ currentScaleType ];
+  var rootIIX = currentScale;
+  var scaleIIX = getScaleIIX(intervals,rootIIX)
+  var scaleNOTES = [];
+  var scaleNOTESidx = []
+  for(var ii = 0; ii < scaleIIX.length;ii++){
+	  scaleNOTES[ii] = getNoteName( scaleIIX[ii] );
+	  scaleNOTESidx[ii] = SCALENOTE_LOOKUP[ scaleNOTES[ii][0] ]
+  }
+  
+  
+  return {rootIIX:rootIIX, scaleType:currentScaleType,
+          intervals:intervals, scaleIIX:scaleIIX, scaleNOTES : scaleNOTES, scaleNOTESidx:scaleNOTESidx
+		  }
+}
+
+
 
 function getChordNotes(chordRootIIX,chordRelNotes){
   //var chordRelNotes = CHORD_TYPE_DEF[chordType];
@@ -113,10 +145,38 @@ function getNoteSelector(){
   return ns;
 }
 
-function tuneStringToNote(sb, iix){
+function getOctaveSelector(){
+  //NOTE_NAMES_GENERAL
+  
+  var ns = document.createElement("select");
+  ns.classList.add("SELECT_OCTAVE");
+  for(var i=0; i < 10; i++){
+    var nn = document.createElement("option");
+    nn.textContent = i;
+    nn.value = i+"";
+    ns.appendChild(nn);
+  }
+  return ns;
+}
+
+
+function tuneStringToNote(sb, iix, oct){
   for(var i=0; i < sb.fretNotes.length; i++){
     sb.fretNotes[i].childNodes[0].textContent = getNoteName( iix + i );
-    
+	  fn.noteIIX = (inst.stringIIX[i] + j ) % 12
+      fn.textContent = getNoteName( fn.noteIIX );
+	  fn.noteOCTIIX = ( inst.stringIIX[i] + j ) + ( 12 * inst.stringOctave[i] )
+	  
+	  for(var jj = 0; jj < fn.classList.length; jj++){
+		  if( fn.classList[jj].startsWith("fretNote_IIX_") || fn.classList[jj].startsWith("fretNote_OCTIIX_")  ){
+			  fn.classList.remove(fn.classList[jj]);
+		  }
+	  }
+	  
+	  fn.classList.add( "fretNote_IIX_" + fn.noteIIX );
+      fn.classList.add( "fretNote_OCTIIX_" + fn.noteOCTIIX );
+	
+	
       //sb.fretNotes.push(fn);
       //console.log(noteLabel)
       //console.log(fn)
@@ -924,6 +984,9 @@ function setInstrument(){
   var sns = document.createElement("div");
   sns.classList.add("SELECT_NOTE_SPACER");
   slab.appendChild(sns);
+  sns = document.createElement("div");
+  sns.classList.add("SELECT_NOTE_SPACER");
+  slab.appendChild(sns);
   for(var j=0; j < spacing.length; j++){
     var fb = document.createElement("div");
     fb.classList.add("fretLabel");
@@ -944,6 +1007,10 @@ function setInstrument(){
     sbh.appendChild(stringNoteSelector);
     stringNoteSelector.value = ""+inst.stringIIX[i];
     
+	var stringOctSelector = getOctaveSelector();
+    sbh.appendChild(stringOctSelector);
+    stringOctSelector.value = ""+inst.stringOctaves[i];
+    
     var blackoutFrets = 0;
     for(var kk=0;kk < inst.blackoutFrets.length;kk++){
       if(i == inst.blackoutFrets[kk][0]){
@@ -956,14 +1023,22 @@ function setInstrument(){
     sb.spacing = spacing;
     sb.fretNotes = [];
     sb.stringNoteSelector = stringNoteSelector;
+	sb.stringOctSelector = stringOctSelector;
     sb.classList.add("stringBoard");
     stringNoteSelector.sb = sb
     stringNoteSelector.stringIdx = i;
     stringNoteSelector.onchange = function(){
       var iix = parseInt(this.value);
-      tuneStringToNote(this.sb, iix);
+      tuneStringToNote(this.sb, iix, parseInt(this.sb.stringOctSelector.value));
       inst.stringIIX[this.stringIdx] = iix;
       calculateChords();
+    }
+    stringOctSelector.sb = sb
+    stringOctSelector.stringIdx = i;
+    stringOctSelector.onchange = function(){
+      var iix = parseInt(this.value);
+      tuneStringToNote(this.sb, parseInt(this.sb.stringNoteSelector.value), parseInt(this.sb.stringOctSelector.value));
+      inst.stringOctave[this.stringIdx] = iix;
     }
     this.stringBoardList.push(sb);
     sbh.appendChild(sb);
@@ -1009,15 +1084,47 @@ function setInstrument(){
       sb.fretNotes.push(fn);
       //console.log(noteLabel)
       //console.log(fn)
-      fn.noteIIX = inst.stringIIX[i] + j - blackoutFrets;
-      fn.textContent = getNoteName( inst.stringIIX[i] + j  - blackoutFrets);
+
+      fn.noteIIX = (inst.stringIIX[i] + j - blackoutFrets) % 12
+      fn.textContent = getNoteName( fn.noteIIX );
+	  fn.noteOCTIIX = ( inst.stringIIX[i] + j - blackoutFrets ) + ( 12 * inst.stringOctaves[i] )
+	  fn.classList.add( "fretNote_IIX_" + fn.noteIIX );
+      fn.classList.add( "fretNote_OCTIIX_" +  fn.noteOCTIIX );
+      
       fn.appendChild(noteLabel);
     }
   }
   calculateChords();
   assignChordButtonEvents();
+
+
+	var fnall = document.getElementsByClassName("fretNote");
+	for(var jj = 0; jj < fnall.length; jj++){
+		var fn = fnall[jj];
+		console.log("---> ADDING EVENT LISTENER TO: "+fn.noteOCTIIX);
+		fn.addEventListener('mouseenter', function(event){
+			//this.NOTEOBJ.style.display="block"
+			var ks = getCurrentScale();
+			var notexx = ks.scaleIIX.indexOf( this.noteIIX )
+			if( notexx >= 0 ){
+				var nn  = ks.scaleNOTESidx[notexx];
+				var nno = nn + (7 * Math.floor(this.noteOCTIIX / 12) )
+				markNoteOnStaff(nno);
+				console.log("["+nn+"/"+nno+"]");
+			}
+			console.log(this.id);
+		}.bind(fn));
+		fn.addEventListener('mouseleave', function(event){
+			//this.NOTEOBJ.style.display="none"
+			clearAllNotesOnStaff();				
+		}.bind(fn));
+	}
+
 }
 
+function changeScaleNoteNames(){
+	
+	}
 
 function addInstrument(  initialInstrument ){
     console.log("--------------- adding instrument: " +initialInstrument);
@@ -1068,10 +1175,12 @@ function addInstrument(  initialInstrument ){
     ipanel.setInstrument();
     activeInstruments.push(ipanel);
     
-    
+
     //document.getElementById("maindivInner_CHORDPANEL").appendChild( ipanel )
     document.getElementById("maindiv").appendChild( ipanel )
     
+	
+	
 }
 
 
@@ -1102,7 +1211,7 @@ for(var i=0; i < KEY_SELECT_BUTTONS.length; i++){
   KEY_SELECT_BUTTONS[i].keyNames = KEYROOT_NAMES_WITHALTS[ fiix ]
 
 }
-
+var CURRENT_SCALE_NOTELIST = [];
 //var CURRENT_SCALE = 0;
 //var CURRENT_SCALE_SHARPTYPE = "sharp";
 function KEY_SELECT_BUTTON_ONCLICK(){
@@ -1116,7 +1225,6 @@ function KEY_SELECT_BUTTON_ONCLICK(){
         console.log("doubleclick HVS!");
         this.textContent = this.keyNames[1] + "/" + this.keyNames[0];
         CURRENT_SCALE_SHARPTYPE = "sharp"
-        
       } else {
         console.log("doubleclick HVF!");
         this.textContent = this.keyNames[0] + "/" + this.keyNames[1];
@@ -1140,6 +1248,18 @@ function KEY_SELECT_BUTTON_ONCLICK(){
       CURRENT_SCALE_SHARPTYPE = "sharp"
     }
   }
+  if(CURRENT_SCALE_SHARPTYPE == "sharp"){
+        var fnotes = document.getElementsByClassName("fretNote");
+		for(var ii = 0; ii < fnotes.length; ii++){
+			fnotes[ii].firstChild.textContent =  NOTE_TRANSLATE_TOFLAT[fnotes[ii].firstChild.textContent]
+		}	  
+  } else {
+        var fnotes = document.getElementsByClassName("fretNote");
+		for(var ii = 0; ii < fnotes.length; ii++){
+			fnotes[ii].firstChild.textContent =  NOTE_TRANSLATE_TOFLAT[fnotes[ii].firstChild.textContent]
+		}	
+  }
+  
   calculateChords();
   setupScaleChords();
 }
@@ -1602,3 +1722,245 @@ function createMiniFret(notes){
 
 </div></div>
 */
+
+
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////// 
+//                         IMAGE SAVER
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+
+/////////////////////////////////////////////////////
+
+
+
+var hh = document.createElement("div")
+hh.classList.add("NSTAFF_HOLDER_HOLDER");
+hh.id = "nstaffHolderHolder"
+
+
+markNoteOnStaff = function(n){
+	var notenum = n % 7
+	var octave = Math.floor( n / 7 );
+	console.log("n = "+n);
+	var staffElementsOnNote = document.getElementsByClassName("NSTAFF_HOVER_NOTENUM_"+notenum);
+	var staffElementsOnNoteAndOctave = document.getElementsByClassName("NSTAFF_HOVER_NOTE_"+n);
+	
+	for( var i = 0; i < staffElementsOnNote.length; i++){
+		staffElementsOnNote[i].NOTEOBJ.classList.add("GREYED");
+		staffElementsOnNote[i].NOTEOBJ.classList.remove("HIDDEN");
+		//staffElementsOnNote[i].classList.remove("GREYED");
+		//staffElementsOnNote[i].classList.add("HIDDEN");
+	}
+	for( var i = 0; i < staffElementsOnNoteAndOctave.length; i++){
+		staffElementsOnNoteAndOctave[i].NOTEOBJ.classList.add("BLACK");
+		staffElementsOnNoteAndOctave[i].NOTEOBJ.classList.remove("GREYED");
+		//staffElementsOnNote[i].classList.remove("GREYED");
+		//staffElementsOnNote[i].classList.add("HIDDEN");
+	}
+	var fnall = document.getElementsByClassName("fretNote");
+	for(var jj = 0; jj < fnall.length; jj++){
+		fnall[jj].classList.remove("fretNoteHovered");
+		fnall[jj].classList.remove("fretNoteHoveredOctave");
+		
+	}
+	
+	var currscale = getCurrentScale();
+	if( notenum < currscale.scaleIIX.length ){
+		var nn = currscale.scaleIIX[ currscale.scaleNOTESidx.indexOf( notenum ) ]
+		var nno = nn + 12*octave
+		
+		console.log("NOTE["+nn+"],OCT["+octave+"]=["+nno+"]");
+		
+		var fnnote = document.getElementsByClassName("fretNote_IIX_"+nn);
+		var fnOctv = document.getElementsByClassName("fretNote_OCTIIX_"+nno);
+		
+		
+		for( var jj = 0; jj < fnnote.length; jj++){
+			fnnote[jj].classList.add("fretNoteHovered")
+		}
+        for( var jj = 0; jj < fnOctv.length; jj++){
+			fnOctv[jj].classList.remove("fretNoteHovered")
+			fnOctv[jj].classList.add("fretNoteHoveredOctave")
+		}		
+	}
+	
+	/*
+		  fn.classList.add( "fretNote_IIX_" + fn.noteIIX );
+      fn.classList.add( "fretNote_OCTIIX_" +  fn.noteOCTIIX );
+	*/
+
+}
+clearNoteOnStaff = function(n){
+	var notenum = n % 7
+	var staffElementsOnNote = document.getElementsByClassName("NSTAFF_HOVER_NOTENUM_"+notenum);
+	
+	for( var i = 0; i < staffElementsOnNote.length; i++){
+		staffElementsOnNote[i].NOTEOBJ.classList.remove("BLACK");
+		staffElementsOnNote[i].NOTEOBJ.classList.remove("GREYED");
+		staffElementsOnNote[i].NOTEOBJ.classList.add("HIDDEN");
+	}
+	var fnall = document.getElementsByClassName("fretNote");
+	for(var jj = 0; jj < fnall.length; jj++){
+		fnall[jj].classList.remove("fretNoteHovered");
+		fnall[jj].classList.remove("fretNoteHoveredOctave");
+		
+	}
+
+}
+clearAllNotesOnStaff = function(){
+	var staffElementsOnNote = document.getElementsByClassName("NSTAFF_HOVER");
+	
+	for( var i = 0; i < staffElementsOnNote.length; i++){
+		staffElementsOnNote[i].NOTEOBJ.classList.remove("BLACK");
+		staffElementsOnNote[i].NOTEOBJ.classList.remove("GREYED");
+		staffElementsOnNote[i].NOTEOBJ.classList.add("HIDDEN");
+	}
+	var fnall = document.getElementsByClassName("fretNote");
+	for(var jj = 0; jj < fnall.length; jj++){
+		fnall[jj].classList.remove("fretNoteHovered");
+		fnall[jj].classList.remove("fretNoteHoveredOctave");
+		
+	}
+
+}
+
+
+
+
+for(var cci = 0; cci < CLEF_LIST.length; cci++){
+    console.log("adding clef: "+CLEF_LIST[cci]["name"]);
+	var nstaff = document.createElement("div")
+	var invisupCT = CLEF_LIST[cci]["nlinesUP"]
+	var visCT = CLEF_LIST[cci]["nlinesMD"];
+	var invisdnCT = CLEF_LIST[cci]["nlinesDN"];
+	nstaff.classList.add("NSTAFF_HOLDER");
+	nstaff.id = CLEF_LIST[cci]["name"]+"_clef_holder";
+    var currlnct = 0;
+	
+	var clefCheckBox = document.getElementById( CLEF_LIST[cci]["checkBoxId"] )
+	clefCheckBox.clefdiv = nstaff;
+	clefCheckBox.addEventListener("change", function(){
+		if(this.checked){
+			this.clefdiv.style.display = "flex";
+		} else {
+			this.clefdiv.style.display = "none";
+		}
+	})
+	
+	for(var i=0; i < invisupCT; i++){
+		var currline = document.createElement("div");
+		currline.classList.add("NSTAFF_LINE");
+		currline.classList.add("INVIS");
+		currline.style.height = (24 * (currlnct+1)) + "px";
+		nstaff.insertBefore(currline,nstaff.firstChild);
+		currlnct = currlnct + 1;
+	}
+	for(var i=0; i < visCT; i++){
+		var currline = document.createElement("div");
+		currline.classList.add("NSTAFF_LINE");
+		currline.style.height = 24 * (currlnct+1)+ "px";
+		nstaff.insertBefore(currline,nstaff.firstChild);
+		currlnct = currlnct + 1;
+		if( i == 0 ){
+			var clefimg = document.createElement("img");
+			clefimg.src = CLEF_LIST[cci]["img"]
+			clefimg.classList.add("NCLEF_IMAGE");
+			clefimg.style.top = 24 * (currlnct)+CLEF_LIST[cci]["imgtop"]+"px"
+			clefimg.style.height = CLEF_LIST[cci]["imght"]+"px";
+			currline.appendChild(clefimg);
+		}
+	}
+	for(var i=0; i < invisdnCT; i++){
+		var currline = document.createElement("div");
+		currline.classList.add("NSTAFF_LINE");
+		currline.classList.add("INVIS");
+		currline.style.height = 24 * (currlnct+1)+ "px";
+		nstaff.insertBefore(currline,nstaff.firstChild);
+		currlnct = currlnct + 1;
+	}
+	//invisupCT+visCT
+	var noteBASE = CLEF_LIST[cci]["baselineNote"]
+	var octvBASE = CLEF_LIST[cci]["baselineOctave"]
+	var ntBASE = noteBASE + (octvBASE*7)
+	var nstaffStart = nstaff.lastChild
+    var currlnct = 0;
+	for(var i=0; i < invisupCT+visCT+invisdnCT; i++){
+		for( var j = 0; j <= 1; j++){
+			var currline = document.createElement("div");
+			currline.classList.add("NSTAFF_HOVER");
+			currline.style.height = (24 * (currlnct+0.75 + ( j * 0.5 ))) + "px";
+			currline.NOTE     = ntBASE + ((invisupCT+visCT)-i)*2 - j
+			currline.NOTENUM = currline.NOTE % 7
+			currline.NOTENAME = SCALENOTE_NAMES[currline.NOTE % 7]
+			currline.OCTAVE   = Math.floor(currline.NOTE / 7)
+			currline.classList.add("NSTAFF_HOVER_NOTE_"+currline.NOTE);
+			currline.classList.add("NSTAFF_HOVER_NOTENUM_"+currline.NOTENUM);
+			currline.classList.add("NSTAFF_HOVER_NOTENAME_"+currline.NOTENAME);
+//
+            if( j == 0 & ( i < invisupCT || i >= invisupCT+visCT ) ){
+				var floatline = document.createElement("div");
+				floatline.classList.add("NSTAFF_FLOATLINE");
+				currline.appendChild(floatline);
+			}
+
+			var currnote = document.createElement("div");
+			currnote.classList.add("NSTAFF_NOTE_HOVER");
+			currnote.classList.add("MID");
+			currline.appendChild(currnote);
+			currline.NOTEOBJ = currnote;
+			//currline.NOTEOBJ.style.display = "none";
+			currline.NOTEOBJ.textContent = currline.NOTENAME + currline.OCTAVE ;
+		
+			currline.addEventListener('mouseenter', function(event){
+				//this.NOTEOBJ.style.display="block"
+				
+				markNoteOnStaff(this.NOTE);
+				console.log(this.id);
+			}.bind(currline));
+			currline.addEventListener('mouseleave', function(event){
+				//this.NOTEOBJ.style.display="none"
+				clearNoteOnStaff(this.NOTE);				
+			}.bind(currline));
+			
+			currline.POS = "A";
+			if(j == 1){
+				currline.POS = "B";
+			}
+			
+			currline.id = "hover_"+CLEF_LIST[cci]["name"]+"_"+i+currline.POS+"_"+currline.NOTENAME+""+currline.OCTAVE;
+			nstaff.insertBefore(currline,nstaffStart.nextElementSibling);
+		}
+		/*currline = document.createElement("div");
+		currline.classList.add("NSTAFF_HOVER");
+		currline.style.height = (24 * (currlnct+1.25)) + "px";
+		currline.NOTE     = ntBASE + ((invisupCT+visCT)-i)*2 - 1
+		currline.NOTENUM = currline.NOTE % 7
+		currline.NOTENAME = SCALENOTE_NAMES[currline.NOTE % 7]
+		currline.OCTAVE   = Math.floor(currline.NOTE / 7)
+		currline.classList.add("NSTAFF_HOVER_NOTE_"+currline.NOTE);
+		currline.classList.add("NSTAFF_HOVER_NOTENUM_"+currline.NOTENUM);
+		currline.classList.add("NSTAFF_HOVER_NOTENAME_"+currline.NOTENAME);
+		currline.id = "hover_"+CLEF_LIST[cci]["name"]+"_"+i+"B_"+currline.NOTENAME+""+currline.OCTAVE;
+		nstaff.insertBefore(currline,nstaffStart.nextElementSibling);*/
+		currlnct = currlnct + 1;
+	}
+	if(CLEF_LIST[cci]["defaultHidden"]){
+		console.log("clef "+CLEF_LIST[cci]["name"] + " is HIDDEN ("+CLEF_LIST[cci]["defaultHidden"]+")");
+		nstaff.style.display = "none";
+	}
+	hh.appendChild(nstaff);
+}
+
+document.getElementById("STAFF_HOLDER").parentNode.insertBefore(hh,document.getElementById("STAFF_HOLDER").nextSibling);
+
+
